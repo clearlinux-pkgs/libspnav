@@ -1,0 +1,13 @@
+--- libspnav-0.2.3/Makefile.in~	2014-08-18 01:38:31.000000000 +0000
++++ libspnav-0.2.3/Makefile.in	2018-12-05 05:18:00.039033327 +0000
+@@ -54,8 +54,8 @@
+ 	cp $(lib_so) $(DESTDIR)$(PREFIX)/$(libdir)/$(lib_so)
+ 	[ -n "$(soname)" ] && \
+ 		rm -f $(DESTDIR)$(PREFIX)/$(libdir)/$(soname) $(DESTDIR)$(PREFIX)/$(libdir)/$(devlink) && \
+-		ln -s $(DESTDIR)$(PREFIX)/$(libdir)/$(lib_so) $(DESTDIR)$(PREFIX)/$(libdir)/$(soname) && \
+-		ln -s $(DESTDIR)$(PREFIX)/$(libdir)/$(soname) $(DESTDIR)$(PREFIX)/$(libdir)/$(devlink) || \
++		ln $(lib_so) $(DESTDIR)$(PREFIX)/$(libdir)/$(soname) && \
++		ln $(soname) $(DESTDIR)$(PREFIX)/$(libdir)/$(devlink) || \
+ 		true
+ 	for h in $(hdr); do cp -p $(srcdir)/$$h $(DESTDIR)$(PREFIX)/include/; done
+ 
