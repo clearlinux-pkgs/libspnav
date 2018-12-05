@@ -4,13 +4,13 @@
 #
 Name     : libspnav
 Version  : 0.2.3
-Release  : 2
+Release  : 4
 URL      : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Source0  : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: libspnav-plugins = %{version}-%{release}
+Requires: libspnav-lib = %{version}-%{release}
 BuildRequires : pkgconfig(x11)
 Patch1: build.patch
 
@@ -28,18 +28,19 @@ automatically compatible with either the free spacenavd driver or the official
 %package dev
 Summary: dev components for the libspnav package.
 Group: Development
+Requires: libspnav-lib = %{version}-%{release}
 Provides: libspnav-devel = %{version}-%{release}
 
 %description dev
 dev components for the libspnav package.
 
 
-%package plugins
-Summary: plugins components for the libspnav package.
-Group: Default
+%package lib
+Summary: lib components for the libspnav package.
+Group: Libraries
 
-%description plugins
-plugins components for the libspnav package.
+%description lib
+lib components for the libspnav package.
 
 
 %prep
@@ -51,12 +52,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543987987
+export SOURCE_DATE_EPOCH=1543988311
 %configure --disable-static libdir=lib64
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1543987987
+export SOURCE_DATE_EPOCH=1543988311
 rm -rf %{buildroot}
 %make_install
 
@@ -67,7 +68,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/include/*.h
 
-%files plugins
+%files lib
 %defattr(-,root,root,-)
-/usr/lib/libspnav.so.0
-/usr/lib/libspnav.so.0.1
+/usr/lib64/libspnav.so.0
+/usr/lib64/libspnav.so.0.1

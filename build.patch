@@ -11,3 +11,14 @@
  		true
  	for h in $(hdr); do cp -p $(srcdir)/$$h $(DESTDIR)$(PREFIX)/include/; done
  
+--- libspnav-0.2.3/configure~	2011-11-26 02:36:43.000000000 +0000
++++ libspnav-0.2.3/configure	2018-12-05 05:34:13.171019778 +0000
+@@ -8,7 +8,7 @@
+ X11=yes
+ 
+ srcdir="`dirname "$0"`"
+-libdir=lib
++libdir=lib64
+ 
+ #if [ "`uname -m`" = 'x86_64' ]; then
+ #	libdir=lib64
