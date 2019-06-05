@@ -4,7 +4,7 @@
 #
 Name     : libspnav
 Version  : 0.2.3
-Release  : 7
+Release  : 8
 URL      : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Source0  : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Summary  : No detailed summary available
