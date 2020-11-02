@@ -4,7 +4,7 @@
 #
 Name     : libspnav
 Version  : 0.2.3
-Release  : 8
+Release  : 9
 URL      : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Source0  : https://github.com/FreeSpacenav/libspnav/releases/download/libspnav-0.2.3/libspnav-0.2.3.tar.gz
 Summary  : No detailed summary available
@@ -30,6 +30,7 @@ Summary: dev components for the libspnav package.
 Group: Development
 Requires: libspnav-lib = %{version}-%{release}
 Provides: libspnav-devel = %{version}-%{release}
+Requires: libspnav = %{version}-%{release}
 
 %description dev
 dev components for the libspnav package.
@@ -45,19 +46,28 @@ lib components for the libspnav package.
 
 %prep
 %setup -q -n libspnav-0.2.3
+cd %{_builddir}/libspnav-0.2.3
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1544000397
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604353175
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static libdir=lib64
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1544000397
+export SOURCE_DATE_EPOCH=1604353175
 rm -rf %{buildroot}
 %make_install
 
@@ -66,7 +76,9 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/spnav.h
+/usr/include/spnav_config.h
+/usr/include/spnav_magellan.h
 /usr/lib64/libspnav.so
 
 %files lib
