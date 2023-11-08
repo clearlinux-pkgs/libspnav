@@ -1,0 +1,25 @@
+From e620cb80544e38596016007d58766a0e40c1f143 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 8 Nov 2023 15:28:47 -0800
+Subject: [PATCH] Set lib64
+
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index 619d39f..f67f5a5 100755
+--- a/configure
++++ b/configure
+@@ -21,7 +21,7 @@ fi
+ echo "configuring libspnav - $VER"
+ 
+ srcdir="`dirname "$0"`"
+-libdir=lib
++libdir=lib64
+ 
+ #if [ "`uname -m`" = 'x86_64' ]; then
+ #	libdir=lib64
+-- 
+2.42.1
+
